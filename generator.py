@@ -2,9 +2,11 @@ import re
 from typing import Callable
 
 def generator_numbers(text): # Функція-генератор
-    numbers = re.findall(r'\b\d+\.\d+|\b\d+\b', text)
+    numbers = re.findall(r' (?:(\d+\.\d+)|(\d+)) ',text)
     for num in numbers:
-      yield float(num)
+      
+      yield float(num[0] or num[1])
+
 
 def sum_profit(text: str, func: Callable):
     return sum(func(text))
